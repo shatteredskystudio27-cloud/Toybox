@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bbyx243hs64yq"]
+
+[ext_resource type="Texture2D" uid="uid://ckqndoivd5x76" path="res://Sprites/enemy_uranium.png" id="1_jprbw"]
+
+[sub_resource type="GDScript" id="GDScript_rqnbq"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	self.position.y += 1
+
+
+
+func _on_static_body_2d_2_body_entered(body: Node2D) -> void:
+	$\".\".queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ch5t"]
+size = Vector2(17.25, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw7vt"]
+atlas = ExtResource("1_jprbw")
+region = Rect2(0, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa057"]
+atlas = ExtResource("1_jprbw")
+region = Rect2(18, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tx0c"]
+atlas = ExtResource("1_jprbw")
+region = Rect2(36, 0, 18, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pftif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw7vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xa057")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw7vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tx0c")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[node name="Uranium_enemy" type="CharacterBody2D" unique_id=1832880225]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_rqnbq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963905298]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_0ch5t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566566704]
+modulate = Color(1, 0, 0, 1)
+sprite_frames = SubResource("SpriteFrames_pftif")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.75994235
+
+[node name="StaticBody2D2" type="Area2D" parent="." unique_id=1844049056]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1342630835]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_0ch5t")
+
+[connection signal="body_entered" from="StaticBody2D2" to="." method="_on_static_body_2d_2_body_entered"]
