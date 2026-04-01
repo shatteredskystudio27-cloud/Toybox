@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://vpbuqutx8408"]
+
+[ext_resource type="Texture2D" uid="uid://bn8pk41i3f38u" path="res://Sprites/captainuranium_guntop.png" id="1_vk1bi"]
+[ext_resource type="AudioStream" uid="uid://bb778xs8uc1an" path="res://Sounds/freesound_community-laser-zap-90575.mp3" id="2_dk5gl"]
+
+[sub_resource type="GDScript" id="GDScript_dk5gl"]
+script/source = "extends CharacterBody2D
+
+const SPEED = 150.0
+const bullet_scene = preload(\"res://bullet.tscn\")
+var shimmy = true
+
+
+func _physics_process(delta: float) -> void:
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and shimmy == true:
+		shimmy = false
+		$Node2D/Timer.start()
+		$AudioStreamPlayer2D2.play()
+		for s in self.get_children():
+			var bullet = bullet_scene.instantiate()
+			get_tree().root.add_child(bullet)
+			bullet.position = s.global_position
+			bullet.rotation = 4.71
+		
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+
+
+
+
+func _on_timer_timeout() -> void:
+	shimmy = true
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kw0bs"]
+size = Vector2(16, 16)
+
+[node name="gun" type="CharacterBody2D" unique_id=1141867852]
+script = SubResource("GDScript_dk5gl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1169890761]
+shape = SubResource("RectangleShape2D_kw0bs")
+
+[node name="PrayIcon" type="Sprite2D" parent="." unique_id=170625073]
+texture = ExtResource("1_vk1bi")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=863936486]
+
+[node name="Timer" type="Timer" parent="Node2D" unique_id=1438232361]
+wait_time = 0.3
+one_shot = true
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=1907976873]
+stream = ExtResource("2_dk5gl")
+
+[connection signal="timeout" from="Node2D/Timer" to="." method="_on_timer_timeout"]

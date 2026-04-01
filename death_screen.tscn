@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://b0hooqtyobfm4"]
+
+[ext_resource type="Script" uid="uid://ckvtbvqu2ft03" path="res://Death_Screen.gd" id="1_hhlqb"]
+[ext_resource type="FontFile" uid="uid://cq2xeus0oa2j4" path="res://fonts/pixelmix_bold.ttf" id="2_f562y"]
+[ext_resource type="Texture2D" uid="uid://bgeffyixvrjbu" path="res://Sprites/UntitledArtwork11 2.png" id="2_s44ck"]
+[ext_resource type="Texture2D" uid="uid://b5go82fl0odoe" path="res://Sprites/UntitledArtwork11.png" id="3_hhlqb"]
+[ext_resource type="FontFile" uid="uid://bvqxxcprm8ghw" path="res://fonts/Tiny5-Regular.ttf" id="4_nus4h"]
+[ext_resource type="AudioStream" uid="uid://o6m06c8j2rj1" path="res://Sounds/Click sound effect.mp3" id="5_b1ui3"]
+
+[node name="Death_screen" type="Control" unique_id=284250696]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hhlqb")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=221611630]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UntitledArtwork112" type="Sprite2D" parent="." unique_id=1643991446]
+position = Vector2(160, 25)
+texture = ExtResource("2_s44ck")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1544503601]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -31.5
+offset_right = 28.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hhlqb")
+
+[node name="Label" type="Label" parent="." unique_id=1191715360]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 19.0
+offset_right = 92.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f562y")
+theme_override_font_sizes/font_size = 32
+text = "YOU DIED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2065505398]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 71.0
+offset_top = -65.0
+offset_right = -68.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Retry" type="Button" parent="VBoxContainer" unique_id=255721478]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_nus4h")
+theme_override_font_sizes/font_size = 16
+text = "Retry"
+
+[node name="Menu" type="Button" parent="VBoxContainer" unique_id=1433656630]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_nus4h")
+theme_override_font_sizes/font_size = 8
+text = "Return to Main Menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1460796370]
+stream = ExtResource("5_b1ui3")
+volume_db = 0.36
+pitch_scale = 2.6
+
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]

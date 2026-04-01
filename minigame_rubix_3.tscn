@@ -1,0 +1,360 @@
+[gd_scene format=3 uid="uid://qdomw4xhry"]
+
+[ext_resource type="Shader" uid="uid://btktoo20q75g8" path="res://minigame_rubix_1.gdshader" id="1_bxaph"]
+[ext_resource type="Script" uid="uid://btek32vtcc808" path="res://minigame_rubix_3.gd" id="1_qoqis"]
+[ext_resource type="Texture2D" uid="uid://brhwpxl02vmhe" path="res://Sprites/Square_shader_px.png" id="3_o3p34"]
+[ext_resource type="Texture2D" uid="uid://bixossi5wxibn" path="res://Sprites/clock_px.png" id="4_byydk"]
+[ext_resource type="Texture2D" uid="uid://c6k0sycxy1gkl" path="res://Sprites/Rubix_cube_minigame1_small.png" id="6_8memy"]
+[ext_resource type="Texture2D" uid="uid://dgf06vdervt6p" path="res://Sprites/arrowkeys_withspacebar.png" id="6_65v7q"]
+[ext_resource type="PackedScene" uid="uid://dm8bkp0q7umli" path="res://Minigame_rubix_3_component.tscn" id="7_8memy"]
+[ext_resource type="FontFile" uid="uid://3mlmuy7k4eus" path="res://fonts/pixelmix.ttf" id="7_tajin"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjne6"]
+shader = ExtResource("1_bxaph")
+shader_parameter/speed = -0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhxeh"]
+bg_color = Color(1, 0.49019608, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7mn"]
+bg_color = Color(0, 0, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_2n65u"]
+resource_name = "Fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b0qsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dk6i0"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psyjh"]
+_data = {
+&"Fade_in": SubResource("Animation_2n65u"),
+&"RESET": SubResource("Animation_b0qsv"),
+&"fade_out": SubResource("Animation_dk6i0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8memy"]
+size = Vector2(36, 36)
+
+[node name="minigame_rubix_3" type="Node2D" unique_id=436875814]
+script = ExtResource("1_qoqis")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1612831007]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(1, 1, 0, 1)
+
+[node name="Shader type shi" type="TextureRect" parent="." unique_id=1051436102]
+modulate = Color(0, 0, 0, 0.42352942)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_mjne6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_o3p34")
+stretch_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=958926474]
+visible = false
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hhxeh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tl7mn")
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ClockPx" type="Sprite2D" parent="ProgressBar" unique_id=1387948248]
+position = Vector2(-9, 8)
+texture = ExtResource("4_byydk")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=831347167]
+z_index = 9
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="Label" type="Label" parent="ColorRect2" unique_id=2055540245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tajin")
+text = "MATCH!"
+
+[node name="ArrowkeysWithspacebar" type="Sprite2D" parent="ColorRect2" unique_id=197949543]
+position = Vector2(160, 137)
+texture = ExtResource("6_65v7q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1167302046]
+libraries/ = SubResource("AnimationLibrary_psyjh")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=552473688]
+position = Vector2(23, 131)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=1212835563]
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 32.0
+offset_bottom = 30.0
+color = Color(0, 0, 0, 1)
+
+[node name="RubixCubeMinigame1Small" type="Sprite2D" parent="Node2D" unique_id=622505099]
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small2" type="Sprite2D" parent="Node2D" unique_id=263208008]
+position = Vector2(13, 0)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small3" type="Sprite2D" parent="Node2D" unique_id=1114576760]
+position = Vector2(26, 0)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small4" type="Sprite2D" parent="Node2D" unique_id=2098712039]
+position = Vector2(0, 13)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small5" type="Sprite2D" parent="Node2D" unique_id=870383815]
+modulate = Color(1, 0.5372549, 0, 1)
+position = Vector2(13, 13)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small6" type="Sprite2D" parent="Node2D" unique_id=2080960684]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(26, 13)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small7" type="Sprite2D" parent="Node2D" unique_id=844424981]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(0, 26)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small8" type="Sprite2D" parent="Node2D" unique_id=1004958612]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(13, 26)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small9" type="Sprite2D" parent="Node2D" unique_id=196607151]
+modulate = Color(0, 0.68235296, 0, 1)
+position = Vector2(26, 26)
+texture = ExtResource("6_8memy")
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=466047880]
+position = Vector2(120, 50)
+scale = Vector2(3, 3)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D2" unique_id=1603108470]
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 32.0
+offset_bottom = 30.0
+color = Color(0, 0, 0, 1)
+
+[node name="RubixCubeMinigame1Small" type="Sprite2D" parent="Node2D2" unique_id=1640159151]
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small2" type="Sprite2D" parent="Node2D2" unique_id=1581670647]
+position = Vector2(13, -1.9073486e-06)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small3" type="Sprite2D" parent="Node2D2" unique_id=508433088]
+position = Vector2(25.99998, -1.9073486e-06)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small4" type="Sprite2D" parent="Node2D2" unique_id=2044604114]
+position = Vector2(7.6293945e-06, 13.000002)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small5" type="Sprite2D" parent="Node2D2" unique_id=807401413]
+position = Vector2(13, 13.000002)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small6" type="Sprite2D" parent="Node2D2" unique_id=512690525]
+position = Vector2(26, 13)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small7" type="Sprite2D" parent="Node2D2" unique_id=1925601100]
+position = Vector2(7.6293945e-06, 26)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small8" type="Sprite2D" parent="Node2D2" unique_id=1489802655]
+position = Vector2(13, 26)
+texture = ExtResource("6_8memy")
+
+[node name="RubixCubeMinigame1Small9" type="Sprite2D" parent="Node2D2" unique_id=821133343]
+position = Vector2(25.999996, 26)
+texture = ExtResource("6_8memy")
+
+[node name="Area2D" type="Area2D" parent="Node2D2" unique_id=1922074010]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D" unique_id=770041653]
+position = Vector2(120, 50.000004)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D2" type="Area2D" parent="Node2D2" unique_id=1193797460]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D2" unique_id=1239152365]
+position = Vector2(159, 50)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D3" type="Area2D" parent="Node2D2" unique_id=817714824]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D3" unique_id=1391066048]
+position = Vector2(198, 50.000004)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D4" type="Area2D" parent="Node2D2" unique_id=1695480692]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D4" unique_id=1281431173]
+position = Vector2(120, 89)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D5" type="Area2D" parent="Node2D2" unique_id=1187092100]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D5" unique_id=677819253]
+position = Vector2(159, 89)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D6" type="Area2D" parent="Node2D2" unique_id=1655796310]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D6" unique_id=440619656]
+position = Vector2(198, 89)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D7" type="Area2D" parent="Node2D2" unique_id=183557255]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D7" unique_id=377906156]
+position = Vector2(120, 128)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D8" type="Area2D" parent="Node2D2" unique_id=375958804]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D8" unique_id=1180192444]
+position = Vector2(159, 128)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Area2D9" type="Area2D" parent="Node2D2" unique_id=295990274]
+position = Vector2(-40, -16.666668)
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Area2D9" unique_id=957132583]
+position = Vector2(198, 128)
+shape = SubResource("RectangleShape2D_8memy")
+
+[node name="Timer" type="Timer" parent="." unique_id=1174225227]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="." unique_id=1945913725]
+one_shot = true
+
+[node name="CharacterBody2D" parent="." unique_id=885360769 instance=ExtResource("7_8memy")]
+position = Vector2(98, 28)
+
+[connection signal="body_entered" from="Node2D2/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D2" to="." method="_on_area_2d_2_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D3" to="." method="_on_area_2d_3_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D3" to="." method="_on_area_2d_3_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D4" to="." method="_on_area_2d_4_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D4" to="." method="_on_area_2d_4_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D5" to="." method="_on_area_2d_5_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D5" to="." method="_on_area_2d_5_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D6" to="." method="_on_area_2d_6_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D6" to="." method="_on_area_2d_6_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D7" to="." method="_on_area_2d_7_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D7" to="." method="_on_area_2d_7_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D8" to="." method="_on_area_2d_8_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D8" to="." method="_on_area_2d_8_body_exited"]
+[connection signal="body_entered" from="Node2D2/Area2D9" to="." method="_on_area_2d_9_body_entered"]
+[connection signal="body_exited" from="Node2D2/Area2D9" to="." method="_on_area_2d_9_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dm8bkp0q7umli"]
+
+[ext_resource type="Script" uid="uid://cx6y2bm38a305" path="res://minigame_rubix_3_component.gd" id="1_r6w3b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6thvj"]
+size = Vector2(12, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_voit5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.5803922, 0, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=885360769]
+script = ExtResource("1_r6w3b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960853802]
+position = Vector2(21, 23)
+shape = SubResource("RectangleShape2D_6thvj")
+
+[node name="Panel" type="Panel" parent="." unique_id=1999814542]
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_voit5")

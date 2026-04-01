@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cyt7ohux6it6f"]
+
+[ext_resource type="Script" uid="uid://dl0q1sye803cs" path="res://bullet.gd" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://gkgkw12funok" path="res://Sprites/captainuranium_energybullet.png" id="2_t4vbm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
+size = Vector2(13, 12)
+
+[node name="Bullet" type="Node2D" unique_id=174062168]
+script = ExtResource("1_v8qja")
+
+[node name="CaptainuraniumEnergybullet" type="Sprite2D" parent="." unique_id=1462320171]
+texture = ExtResource("2_t4vbm")
+
+[node name="Killtimer" type="Timer" parent="." unique_id=485108730]
+wait_time = 1.2999999999999998
+autostart = true
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=1299859672]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1321992264]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_v8qja")
+
+[connection signal="timeout" from="Killtimer" to="." method="_on_killtimer_timeout"]

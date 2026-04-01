@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dd3bor7wrhbhb"]
+
+[ext_resource type="Script" uid="uid://xbyvmba6ht6c" path="res://rubix_cube_gravity.gd" id="1_3ia12"]
+[ext_resource type="Texture2D" uid="uid://c6k0sycxy1gkl" path="res://Sprites/Rubix_cube_minigame1_small.png" id="2_3wdhl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aywq3"]
+size = Vector2(14, 14)
+
+[node name="purple" type="RigidBody2D" unique_id=1464380753]
+modulate = Color(0.7372549, 0.16078432, 0.5411765, 1)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_3ia12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=242389417]
+shape = SubResource("RectangleShape2D_aywq3")
+
+[node name="RubixCubeMinigame1Small" type="Sprite2D" parent="." unique_id=708460357]
+texture = ExtResource("2_3wdhl")
+
+[node name="Button" type="Button" parent="." unique_id=1526757474]
+modulate = Color(1, 1, 1, 0)
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

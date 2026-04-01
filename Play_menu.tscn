@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://bgql7q5wfhm4n"]
+
+[ext_resource type="FontFile" uid="uid://cq2xeus0oa2j4" path="res://fonts/pixelmix_bold.ttf" id="1_ek57p"]
+[ext_resource type="Script" uid="uid://xjvbgr5p4q0n" path="res://play_menu.gd" id="1_ou7t5"]
+[ext_resource type="FontFile" uid="uid://bvqxxcprm8ghw" path="res://fonts/Tiny5-Regular.ttf" id="2_173dv"]
+[ext_resource type="AudioStream" uid="uid://o6m06c8j2rj1" path="res://Sounds/Click sound effect.mp3" id="4_op4jk"]
+[ext_resource type="FontFile" uid="uid://drydrt8iy1kje" path="res://fonts/Minecraft.ttf" id="5_gad11"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_173dv"]
+bg_color = Color(0.07445801, 9.1520626e-05, 0.2056751, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(1, 1, 0, 0.43529412)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek57p"]
+bg_color = Color(0.9999997, 0.73612946, 0.9879293, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(1, 1, 0, 0.6)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ou7t5"]
+bg_color = Color(0.374457, 0.0011508062, 0.56945425, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 3
+shadow_color = Color(1, 1, 0, 0.6)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op4jk"]
+bg_color = Color(0, 0.14901961, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gad11"]
+bg_color = Color(0.86912113, 0.9999998, 0.85529375, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5y0t"]
+bg_color = Color(0, 0.39607844, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jml1"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nlybe"]
+font = ExtResource("5_gad11")
+font_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=1931312461]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ou7t5")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1995155261]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2011741453]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -15.5
+offset_right = -32.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Campaign" type="Button" parent="HBoxContainer" unique_id=1262170561]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ek57p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_173dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ek57p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ou7t5")
+text = " Campaign "
+
+[node name="Level_select" type="Button" parent="HBoxContainer" unique_id=2073000286]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ek57p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_op4jk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gad11")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l5y0t")
+text = " Level Select "
+
+[node name="Label" type="Label" parent="." unique_id=1608108376]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 112.0
+offset_right = 101.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_173dv")
+theme_override_font_sizes/font_size = 8
+text = "Recommended Mode"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1339246091]
+stream = ExtResource("4_op4jk")
+volume_db = 0.36
+pitch_scale = 2.6
+
+[node name="Panel" type="Panel" parent="." unique_id=1001244123]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 109.0
+offset_right = 308.0
+offset_bottom = 122.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3jml1")
+
+[node name="Label2" type="Label" parent="Panel" unique_id=1649534605]
+layout_mode = 0
+offset_right = 152.0
+offset_bottom = 16.0
+text = "Under Construction"
+label_settings = SubResource("LabelSettings_nlybe")
+
+[connection signal="pressed" from="HBoxContainer/Campaign" to="." method="_on_campaign_pressed"]

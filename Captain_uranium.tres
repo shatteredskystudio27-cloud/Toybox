@@ -1,0 +1,16 @@
+[gd_resource type="Resource" format=3 uid="uid://cb5o6b57n2kgn"]
+
+[ext_resource type="Script" uid="uid://b3rpu6fhm8sfw" path="res://BaseEnemy.gd" id="1_uuspy"]
+[ext_resource type="Texture2D" uid="uid://cst4wh7ixd0qo" path="res://Sprites/Captainuraniumtypeshit.png" id="2_guaxs"]
+
+[resource]
+script = ExtResource("1_uuspy")
+name = "Captain Uranium"
+texture = ExtResource("2_guaxs")
+health = 120
+damage = 35
+number = 3
+text1 = "Captain Uranium aims his gun and fires it"
+text2 = "Captain Uranium tries to pistol whip you"
+text3 = "Captain Uranium takes a knee and bows his head"
+balls = "res://Captain_uranium.tscn"

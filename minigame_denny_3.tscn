@@ -1,0 +1,348 @@
+[gd_scene format=3 uid="uid://br843iaua8eo5"]
+
+[ext_resource type="Script" uid="uid://0muu3uvvuw87" path="res://minigame_denny_3.gd" id="1_h6r6a"]
+[ext_resource type="Shader" uid="uid://btktoo20q75g8" path="res://minigame_rubix_1.gdshader" id="2_hbekr"]
+[ext_resource type="Texture2D" uid="uid://nqoxrv8sgaxb" path="res://Sprites/rubberchicken_revised_blindingly_bright_for_shader.png" id="3_4fmb2"]
+[ext_resource type="Texture2D" uid="uid://bixossi5wxibn" path="res://Sprites/clock_px.png" id="4_fcg1r"]
+[ext_resource type="Texture2D" uid="uid://biqeii1156dve" path="res://Sprites/arrowkeys_withoutspacebar.png" id="5_o24gu"]
+[ext_resource type="FontFile" uid="uid://3mlmuy7k4eus" path="res://fonts/pixelmix.ttf" id="6_m4goq"]
+[ext_resource type="Texture2D" uid="uid://0d8igwivqusa" path="res://Sprites/rubberchicken_revised.png" id="7_3q1or"]
+[ext_resource type="Texture2D" uid="uid://dvj108ao8ya35" path="res://Sprites/denny_lookdown.png" id="8_2ulx1"]
+[ext_resource type="Texture2D" uid="uid://bncii755xftxt" path="res://Sprites/denny_lookleft.png" id="9_3jx1g"]
+[ext_resource type="Texture2D" uid="uid://ccijckpwf66p2" path="res://Sprites/denny_lookright.png" id="10_uixg2"]
+[ext_resource type="Texture2D" uid="uid://dmwj878j62epi" path="res://Sprites/denny_lookup.png" id="11_vl0u5"]
+[ext_resource type="Texture2D" uid="uid://b6vso0j1rad50" path="res://Sprites/4 arrows.png" id="12_hbekr"]
+[ext_resource type="Texture2D" uid="uid://byinusacje81l" path="res://Sprites/denny_eyesmouthclosed.png" id="13_4fmb2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui0ti"]
+shader = ExtResource("2_hbekr")
+shader_parameter/speed = -0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhxeh"]
+bg_color = Color(1, 0.49019608, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7mn"]
+bg_color = Color(0, 0, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_2n65u"]
+resource_name = "Fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b0qsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dk6i0"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fcg1r"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psyjh"]
+_data = {
+&"Fade_in": SubResource("Animation_2n65u"),
+&"RESET": SubResource("Animation_b0qsv"),
+&"fade_out": SubResource("Animation_dk6i0"),
+&"new_animation": SubResource("Animation_fcg1r")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6cvn"]
+atlas = ExtResource("8_2ulx1")
+region = Rect2(0, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwyre"]
+atlas = ExtResource("9_3jx1g")
+region = Rect2(0, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fynk2"]
+atlas = ExtResource("10_uixg2")
+region = Rect2(0, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf7fj"]
+atlas = ExtResource("11_vl0u5")
+region = Rect2(0, 0, 90, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkwyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6cvn")
+}],
+"loop": true,
+"name": &"down",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwyre")
+}],
+"loop": true,
+"name": &"left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fynk2")
+}],
+"loop": true,
+"name": &"right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf7fj")
+}],
+"loop": true,
+"name": &"up",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fmb2"]
+atlas = ExtResource("12_hbekr")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcg1r"]
+atlas = ExtResource("12_hbekr")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o24gu"]
+atlas = ExtResource("12_hbekr")
+region = Rect2(0, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4goq"]
+atlas = ExtResource("12_hbekr")
+region = Rect2(40, 40, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3q1or"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fmb2")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcg1r")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o24gu")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4goq")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="minigame_denny_3" type="Node2D" unique_id=436875814]
+script = ExtResource("1_h6r6a")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1612831007]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(1, 0.101960786, 0.68235296, 1)
+
+[node name="Shader type shi" type="TextureRect" parent="." unique_id=1051436102]
+modulate = Color(0, 0, 0, 0.42352942)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ui0ti")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4fmb2")
+stretch_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=958926474]
+visible = false
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hhxeh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tl7mn")
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ClockPx" type="Sprite2D" parent="ProgressBar" unique_id=1387948248]
+position = Vector2(-9, 8)
+texture = ExtResource("4_fcg1r")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=831347167]
+z_index = 9
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="SpacebarWithoutarrowkeys" type="Sprite2D" parent="ColorRect2" unique_id=903081095]
+position = Vector2(160, 138)
+texture = ExtResource("5_o24gu")
+
+[node name="Label" type="Label" parent="ColorRect2" unique_id=2055540245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_m4goq")
+text = "REMEBER!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1167302046]
+libraries/ = SubResource("AnimationLibrary_psyjh")
+
+[node name="Timer" type="Timer" parent="." unique_id=2052598994]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="." unique_id=877771401]
+one_shot = true
+
+[node name="RubberchickenRevised" type="Sprite2D" parent="." unique_id=1344289504]
+position = Vector2(168, 107)
+texture = ExtResource("7_3q1or")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1632601875]
+position = Vector2(168, 107)
+sprite_frames = SubResource("SpriteFrames_lkwyd")
+animation = &"up"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=565219872]
+position = Vector2(163, 40)
+
+[node name="arrow1" type="AnimatedSprite2D" parent="Node2D" unique_id=756017801]
+position = Vector2(-83, 0)
+sprite_frames = SubResource("SpriteFrames_3q1or")
+animation = &"down"
+
+[node name="arrow2" type="AnimatedSprite2D" parent="Node2D" unique_id=189822753]
+position = Vector2(-42, 0)
+sprite_frames = SubResource("SpriteFrames_3q1or")
+animation = &"down"
+
+[node name="arrow3" type="AnimatedSprite2D" parent="Node2D" unique_id=1946173955]
+sprite_frames = SubResource("SpriteFrames_3q1or")
+animation = &"down"
+
+[node name="arrow4" type="AnimatedSprite2D" parent="Node2D" unique_id=581264739]
+position = Vector2(40, 0)
+sprite_frames = SubResource("SpriteFrames_3q1or")
+animation = &"down"
+
+[node name="arrow5" type="AnimatedSprite2D" parent="Node2D" unique_id=672462350]
+position = Vector2(80, 0)
+sprite_frames = SubResource("SpriteFrames_3q1or")
+animation = &"down"
+
+[node name="DennyEyesmouthclosed" type="Sprite2D" parent="." unique_id=20781400]
+position = Vector2(168, 106)
+texture = ExtResource("13_4fmb2")
+
+[node name="Timer3" type="Timer" parent="." unique_id=276380824]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]

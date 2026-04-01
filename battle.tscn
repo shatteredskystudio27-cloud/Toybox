@@ -1,0 +1,444 @@
+[gd_scene format=3 uid="uid://dhqq8g51padq0"]
+
+[ext_resource type="Script" uid="uid://cjwqhbgpjkrxy" path="res://battle.gd" id="1_mhv3b"]
+[ext_resource type="Texture2D" uid="uid://cv4v1d5frtray" path="res://Sprites/icon.svg" id="1_oxp8w"]
+[ext_resource type="Resource" uid="uid://7c3amwswj21n" path="res://TestEnemy.tres" id="2_lcjiy"]
+[ext_resource type="Texture2D" uid="uid://bmywvuwbcuixw" path="res://Sprites/Peak.png" id="3_ol6im"]
+[ext_resource type="Texture2D" uid="uid://bqn0oy5nlts7h" path="res://Sprites/Pray Icon.png" id="4_0npn6"]
+[ext_resource type="FontFile" uid="uid://bvqxxcprm8ghw" path="res://fonts/Tiny5-Regular.ttf" id="4_6t8i5"]
+[ext_resource type="Texture2D" uid="uid://bsgi5vylbtiso" path="res://Sprites/Defend Icon.png" id="4_dw4jg"]
+[ext_resource type="Texture2D" uid="uid://bsglumk00ceqr" path="res://Sprites/fight icon.png" id="4_i431l"]
+[ext_resource type="Texture2D" uid="uid://djtdugymg7enk" path="res://Sprites/Skills icon.png" id="5_dw4jg"]
+[ext_resource type="LabelSettings" uid="uid://bni016xsnc2py" path="res://fonts/StandardText.tres" id="7_0npn6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ol6im"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxp8w"]
+bg_color = Color(0.64705884, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.6862745)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sfm4"]
+bg_color = Color(0, 0.7251751, 5.7756904e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+shadow_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0npn6"]
+bg_color = Color(0.078431375, 0, 0.10980392, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.81226707, 0.6626054, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i431l"]
+bg_color = Color(0.18717614, 0.18717611, 0.18717617, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t8i5"]
+bg_color = Color(0.90794086, 0.9079421, 0.9079416, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw4jg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_pihy1"]
+resource_name = "Lol_u_suck"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Damage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b1i6x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EP/EnemyData/Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Damage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ol6im"]
+resource_name = "do_u_have_any_ibprofen?(YOU_BE_WHAT??!!)"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Damage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 0, 0, 0.39215687), Color(1, 1, 1, 0), Color(1, 0, 0, 0.39215687), Color(1, 1, 1, 0), Color(1, 0, 0, 0.39215687), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_elvfr"]
+resource_name = "do_u_have_any_ibprofen?(YOU_BE_WHAT??!!)_but_less"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Damage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 0, 0, 0.21960784), Color(1, 1, 1, 0), Color(1, 0, 0, 0.21960784), Color(1, 1, 1, 0), Color(1, 0, 0, 0.21960784), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sl0w2"]
+resource_name = "enemy_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EP/EnemyData/Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4s0ev"]
+resource_name = "enemy_dies"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EP/EnemyData/Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.07683582, 0.07683582, 0.07683582, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_elvfr"]
+_data = {
+&"Lol_u_suck": SubResource("Animation_pihy1"),
+&"RESET": SubResource("Animation_b1i6x"),
+&"do_u_have_any_ibprofen?(YOU_BE_WHAT??!!)": SubResource("Animation_ol6im"),
+&"do_u_have_any_ibprofen?(YOU_BE_WHAT??!!)_but_less": SubResource("Animation_elvfr"),
+&"enemy_damage": SubResource("Animation_sl0w2"),
+&"enemy_dies": SubResource("Animation_4s0ev")
+}
+
+[node name="Battle" type="Control" unique_id=113821216]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mhv3b")
+enemy = ExtResource("2_lcjiy")
+
+[node name="Damage" type="TextureRect" parent="." unique_id=114502109]
+modulate = Color(1, 1, 1, 0)
+z_index = 40
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_ol6im")
+
+[node name="Background" type="TextureRect" parent="." unique_id=281702164]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ol6im")
+expand_mode = 1
+
+[node name="EP" type="Panel" parent="." unique_id=696420516]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -88.0
+offset_right = 87.0
+offset_bottom = -48.0
+grow_vertical = 2
+
+[node name="EnemyData" type="VBoxContainer" parent="EP" unique_id=1800809201]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="Icon" type="Sprite2D" parent="EP/EnemyData" unique_id=999604425]
+position = Vector2(227.75, 44)
+scale = Vector2(0.7851562, 0.703125)
+texture = ExtResource("1_oxp8w")
+
+[node name="Label" type="Label" parent="EP/EnemyData" unique_id=506622609]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6t8i5")
+theme_override_font_sizes/font_size = 16
+text = "Enemy:"
+
+[node name="ProgressBar" type="ProgressBar" parent="EP/EnemyData" unique_id=1513819164]
+custom_minimum_size = Vector2(82, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_oxp8w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7sfm4")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="EP/EnemyData/ProgressBar" unique_id=725478444]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PP" type="Panel" parent="." unique_id=738496302]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 233.0
+offset_top = 1.0
+offset_right = 318.0
+offset_bottom = 41.0
+grow_vertical = 2
+
+[node name="PlayerData" type="VBoxContainer" parent="PP" unique_id=139252027]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="PP/PlayerData" unique_id=2051785956]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6t8i5")
+theme_override_font_sizes/font_size = 16
+text = "John Toy:"
+
+[node name="ProgressBar" type="ProgressBar" parent="PP/PlayerData" unique_id=1409764303]
+custom_minimum_size = Vector2(82, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_oxp8w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7sfm4")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="PP/PlayerData/ProgressBar" unique_id=408683424]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_6t8i5")
+theme_override_font_sizes/font_size = 16
+text = "HP: 50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AP" type="Panel" parent="." unique_id=559250547]
+layout_mode = 0
+offset_top = 133.0
+offset_right = 320.0
+offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0npn6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AP" unique_id=1123393048]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.5
+offset_top = -14.0
+offset_right = 146.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 23
+
+[node name="Attack" type="Button" parent="AP/HBoxContainer" unique_id=1217151567]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99997896, 0.7784464, 0.74181575, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0.007843138, 0.039215688, 1)
+theme_override_fonts/font = ExtResource("4_6t8i5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i431l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6t8i5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dw4jg")
+text = "Fight"
+icon = ExtResource("4_i431l")
+
+[node name="Wish" type="Button" parent="AP/HBoxContainer" unique_id=875435406]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9898246, 1, 0.75611913, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 1, 0, 1)
+theme_override_fonts/font = ExtResource("4_6t8i5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i431l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6t8i5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dw4jg")
+text = "Wish"
+icon = ExtResource("4_0npn6")
+
+[node name="Skills" type="Button" parent="AP/HBoxContainer" unique_id=2084049706]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6982475, 1, 0.6716039, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.007843138, 0.5568628, 0.09803922, 1)
+theme_override_fonts/font = ExtResource("4_6t8i5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i431l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6t8i5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dw4jg")
+text = "Skills"
+icon = ExtResource("5_dw4jg")
+
+[node name="Defend" type="Button" parent="AP/HBoxContainer" unique_id=313386192]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81299466, 0.87589484, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.03529412, 0.09411765, 0.67058825, 1)
+theme_override_fonts/font = ExtResource("4_6t8i5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i431l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6t8i5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dw4jg")
+text = "Defend"
+icon = ExtResource("4_dw4jg")
+
+[node name="TextBox" type="Panel" parent="." unique_id=641874363]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0npn6")
+
+[node name="Label" type="Label" parent="TextBox" unique_id=1861749476]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -21.5
+offset_right = 158.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "An Evil Toy approaches! "
+label_settings = ExtResource("7_0npn6")
+autowrap_mode = 2
+
+[node name="Ticker" type="Label" parent="TextBox" unique_id=1110032924]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 30.0
+offset_right = 319.0
+offset_bottom = 53.0
+text = ">"
+label_settings = ExtResource("7_0npn6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1905221163]
+libraries/ = SubResource("AnimationLibrary_elvfr")
+
+[connection signal="pressed" from="AP/HBoxContainer/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="AP/HBoxContainer/Defend" to="." method="_on_defend_pressed"]

@@ -1,0 +1,296 @@
+[gd_scene format=3 uid="uid://dgv3tp400l8pt"]
+
+[ext_resource type="FontFile" uid="uid://3mlmuy7k4eus" path="res://fonts/pixelmix.ttf" id="1_hj8uw"]
+[ext_resource type="Script" uid="uid://bpe73js56eo8l" path="res://minigame_uranium_1.gd" id="1_ovexj"]
+[ext_resource type="Texture2D" uid="uid://b65me5ccownfd" path="res://Sprites/mouseicon.png" id="2_ovexj"]
+[ext_resource type="Shader" uid="uid://btktoo20q75g8" path="res://minigame_rubix_1.gdshader" id="3_dgyni"]
+[ext_resource type="Texture2D" uid="uid://bwdwsw6tv86sp" path="res://Sprites/Radioactive type shit.png" id="4_b6r3t"]
+[ext_resource type="Texture2D" uid="uid://bixossi5wxibn" path="res://Sprites/clock_px.png" id="5_ionmp"]
+[ext_resource type="AudioStream" uid="uid://cx3p6x6un823g" path="res://Sounds/Snap sound effect.mp3" id="6_tol8c"]
+[ext_resource type="AudioStream" uid="uid://bb778xs8uc1an" path="res://Sounds/freesound_community-laser-zap-90575.mp3" id="8_dgyni"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7aqo1"]
+shader = ExtResource("3_dgyni")
+shader_parameter/speed = 0.3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1vvs"]
+bg_color = Color(1, 0.49019608, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bigi5"]
+bg_color = Color(0, 0, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ovexj"]
+font = ExtResource("1_hj8uw")
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n65u"]
+size = Vector2(340.5, 26.464844)
+
+[sub_resource type="Animation" id="Animation_2n65u"]
+resource_name = "Fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b0qsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dk6i0"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk6i0"]
+_data = {
+&"Fade_in": SubResource("Animation_2n65u"),
+&"RESET": SubResource("Animation_b0qsv"),
+&"fade_out": SubResource("Animation_dk6i0")
+}
+
+[sub_resource type="Animation" id="Animation_b6r3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect3:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ionmp"]
+resource_name = "gun_shot"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect3:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19826643, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 1, 0, 0), Color(0, 1, 0, 0.627451), Color(0, 1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tol8c"]
+_data = {
+&"RESET": SubResource("Animation_b6r3t"),
+&"gun_shot": SubResource("Animation_ionmp")
+}
+
+[node name="Minigame_uranium_1" type="Node2D" unique_id=1838073703]
+script = ExtResource("1_ovexj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=91119843]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0.52156866, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=614514074]
+z_index = 21
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="Label" type="Label" parent="ColorRect2" unique_id=874137462]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_hj8uw")
+text = "SHOOT!"
+
+[node name="Mouseicon" type="Sprite2D" parent="ColorRect2" unique_id=1752370537]
+position = Vector2(161, 136)
+texture = ExtResource("2_ovexj")
+
+[node name="Shader type shi" type="TextureRect" parent="." unique_id=323529531]
+modulate = Color(0, 0, 0, 0.42352942)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7aqo1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_b6r3t")
+stretch_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=194489576]
+visible = false
+z_index = 20
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_m1vvs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bigi5")
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ClockPx" type="Sprite2D" parent="ProgressBar" unique_id=630030708]
+position = Vector2(-9, 8)
+texture = ExtResource("5_ionmp")
+
+[node name="Label" type="Label" parent="ProgressBar" unique_id=514475796]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 18.0
+offset_right = 300.0
+offset_bottom = 41.0
+text = "0"
+label_settings = SubResource("LabelSettings_ovexj")
+
+[node name="Label2" type="Label" parent="ProgressBar" unique_id=1256216777]
+layout_mode = 0
+offset_left = 231.0
+offset_top = -1.0
+offset_right = 301.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_hj8uw")
+text = "Goal: 7"
+
+[node name="Timer" type="Timer" parent="." unique_id=1413076797]
+process_mode = 1
+wait_time = 10.0
+one_shot = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=186252507]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1983861143]
+position = Vector2(165, 188)
+shape = SubResource("RectangleShape2D_2n65u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1772651682]
+position = Vector2(-7.999998, 119)
+rotation = 1.5766062
+shape = SubResource("RectangleShape2D_2n65u")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1223534029]
+position = Vector2(332.73233, 107.027504)
+rotation = 1.5766062
+shape = SubResource("RectangleShape2D_2n65u")
+
+[node name="Timer2" type="Timer" parent="." unique_id=1356940378]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1381286687]
+libraries/ = SubResource("AnimationLibrary_dk6i0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=659653080]
+stream = ExtResource("6_tol8c")
+volume_db = 2.409
+pitch_scale = 0.71
+
+[node name="Timer3" type="Timer" parent="." unique_id=800261181]
+wait_time = 0.7
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=618510956]
+z_index = 30
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 1, 0, 0)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1484120225]
+libraries/ = SubResource("AnimationLibrary_tol8c")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=515772999]
+stream = ExtResource("8_dgyni")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]

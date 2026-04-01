@@ -1,0 +1,16 @@
+[gd_resource type="Resource" format=3 uid="uid://dqawsf8kdvhcy"]
+
+[ext_resource type="Script" uid="uid://b3rpu6fhm8sfw" path="res://BaseEnemy.gd" id="1_65j63"]
+[ext_resource type="Texture2D" uid="uid://0d8igwivqusa" path="res://Sprites/rubberchicken_revised.png" id="2_65j63"]
+
+[resource]
+script = ExtResource("1_65j63")
+name = "Denny"
+texture = ExtResource("2_65j63")
+health = 80
+damage = 20
+number = 1
+text1 = "You felt Denny's sins crawling on his waddle"
+text2 = "Denny screaches causing the heavens to be torn apart"
+text3 = "Denny collapses and rolls around like a tumbleweed"
+balls = "res://Dennys_battle.tscn"

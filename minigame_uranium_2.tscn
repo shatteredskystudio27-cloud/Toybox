@@ -1,0 +1,231 @@
+[gd_scene format=3 uid="uid://q1a0d7uet0ln"]
+
+[ext_resource type="Script" uid="uid://blhv1x1q1oh3b" path="res://minigame_uranium_2.gd" id="1_cdf1r"]
+[ext_resource type="Shader" uid="uid://btktoo20q75g8" path="res://minigame_rubix_1.gdshader" id="1_p15di"]
+[ext_resource type="Texture2D" uid="uid://bwdwsw6tv86sp" path="res://Sprites/Radioactive type shit.png" id="2_lh8oa"]
+[ext_resource type="Texture2D" uid="uid://bixossi5wxibn" path="res://Sprites/clock_px.png" id="3_b6ys1"]
+[ext_resource type="Texture2D" uid="uid://biqeii1156dve" path="res://Sprites/arrowkeys_withoutspacebar.png" id="4_cdf1r"]
+[ext_resource type="FontFile" uid="uid://3mlmuy7k4eus" path="res://fonts/pixelmix.ttf" id="5_w52f3"]
+[ext_resource type="Texture2D" uid="uid://ch42emtwtom4a" path="res://Sprites/walltile.png" id="6_a4bnf"]
+[ext_resource type="PackedScene" uid="uid://7v274yfustj1" path="res://uranium_soul.tscn" id="7_lh8oa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui0ti"]
+shader = ExtResource("1_p15di")
+shader_parameter/speed = -0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhxeh"]
+bg_color = Color(1, 0.49019608, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7mn"]
+bg_color = Color(0, 0, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_2n65u"]
+resource_name = "Fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b0qsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dk6i0"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fcg1r"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psyjh"]
+_data = {
+&"Fade_in": SubResource("Animation_2n65u"),
+&"RESET": SubResource("Animation_b0qsv"),
+&"fade_out": SubResource("Animation_dk6i0"),
+&"new_animation": SubResource("Animation_fcg1r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh8oa"]
+size = Vector2(20, 165)
+
+[node name="minigame_uranium_2" type="Node2D" unique_id=436875814]
+script = ExtResource("1_cdf1r")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1612831007]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(1, 0, 0, 1)
+
+[node name="Shader type shi" type="TextureRect" parent="." unique_id=1051436102]
+modulate = Color(0, 0, 0, 0.42352942)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ui0ti")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lh8oa")
+stretch_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=958926474]
+visible = false
+z_index = 20
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hhxeh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tl7mn")
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ClockPx" type="Sprite2D" parent="ProgressBar" unique_id=1387948248]
+position = Vector2(-9, 8)
+texture = ExtResource("3_b6ys1")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=831347167]
+z_index = 21
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="SpacebarWithoutarrowkeys" type="Sprite2D" parent="ColorRect2" unique_id=903081095]
+position = Vector2(160, 138)
+texture = ExtResource("4_cdf1r")
+
+[node name="Label" type="Label" parent="ColorRect2" unique_id=2055540245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_w52f3")
+text = "DODGE!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1167302046]
+libraries/ = SubResource("AnimationLibrary_psyjh")
+
+[node name="Timer" type="Timer" parent="." unique_id=2052598994]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="." unique_id=877771401]
+one_shot = true
+
+[node name="Walltile" type="Sprite2D" parent="." unique_id=74245242]
+position = Vector2(160, 90)
+scale = Vector2(2, 2)
+texture = ExtResource("6_a4bnf")
+
+[node name="uranium_soul" parent="." unique_id=1351389342 instance=ExtResource("7_lh8oa")]
+position = Vector2(158, 162)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=21282940]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1894267602]
+position = Vector2(73, 82.5)
+shape = SubResource("RectangleShape2D_lh8oa")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1726223092]
+position = Vector2(248, 86)
+shape = SubResource("RectangleShape2D_lh8oa")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=153915276]
+position = Vector2(160, 3)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_lh8oa")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=454496203]
+position = Vector2(159, 178)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_lh8oa")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1087209045]
+position = Vector2(160, 68)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

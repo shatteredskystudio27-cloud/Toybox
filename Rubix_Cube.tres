@@ -1,0 +1,16 @@
+[gd_resource type="Resource" format=3 uid="uid://ce40gtlflipte"]
+
+[ext_resource type="Script" uid="uid://b3rpu6fhm8sfw" path="res://BaseEnemy.gd" id="1_is8xx"]
+[ext_resource type="Texture2D" uid="uid://coe4jifky0kw4" path="res://Sprites/Rubix_Cube_enemy_px.png" id="2_n1786"]
+
+[resource]
+script = ExtResource("1_is8xx")
+name = "Rubix"
+texture = ExtResource("2_n1786")
+health = 100
+damage = 25
+number = 2
+text1 = "Rubix tries to smack you with his arm"
+text2 = "Rubix rushes twoards you in an attemp to knock you down"
+text3 = "Rubix falls on his side, weak and deafeted"
+balls = "res://Rubix_Cube_Battle.tscn"

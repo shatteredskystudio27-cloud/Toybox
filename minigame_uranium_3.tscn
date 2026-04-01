@@ -1,0 +1,259 @@
+[gd_scene format=3 uid="uid://bom05kahrahst"]
+
+[ext_resource type="Shader" uid="uid://dmwojpcwhn6u4" path="res://Rubix_minigame_2.gdshader" id="1_378xr"]
+[ext_resource type="Texture2D" uid="uid://bwdwsw6tv86sp" path="res://Sprites/Radioactive type shit.png" id="2_y3thk"]
+[ext_resource type="Texture2D" uid="uid://bixossi5wxibn" path="res://Sprites/clock_px.png" id="3_1tr8c"]
+[ext_resource type="Texture2D" uid="uid://dgf06vdervt6p" path="res://Sprites/arrowkeys_withspacebar.png" id="4_mngjt"]
+[ext_resource type="FontFile" uid="uid://3mlmuy7k4eus" path="res://fonts/pixelmix.ttf" id="5_hukah"]
+[ext_resource type="PackedScene" uid="uid://vpbuqutx8408" path="res://gun.tscn" id="6_y3thk"]
+
+[sub_resource type="GDScript" id="GDScript_y3thk"]
+script/source = "extends Node2D
+
+
+@onready var progress_bar: ProgressBar = $ProgressBar
+var win = false
+@export var height: = -10
+@export var width: = 320
+var enemy = preload(\"res://uranium_enemy.tscn\")
+var nut = true
+
+func _process(delta: float) -> void:
+	if State.minigame_3 == true:
+		$Timer2.start()
+		State.minigame_3 = false
+		win = true
+	progress_bar.value = - $Timer.time_left + progress_bar.max_value
+
+func _on_timer_2_timeout() -> void:
+	$AnimationPlayer.play(\"Fade_in\")
+	await $AnimationPlayer.animation_finished
+	$ColorRect2/SpacebarWithoutarrowkeys.hide()
+	$Timer.start()
+	$Timer3.start()
+	progress_bar.max_value = $Timer.time_left
+	$ProgressBar.show()
+
+
+func _on_timer_timeout() -> void:
+	if win == true:
+		$ColorRect2/Label.text = \"Game won :)\"
+		State.game_won = true
+	if win == false:
+		$ColorRect2/Label.text = \"Game failed :(\"
+		State.game_won = false
+	$AnimationPlayer.play(\"fade_out\")
+	await $AnimationPlayer.animation_finished
+	await get_tree().create_timer(.5).timeout
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if nut == true:
+		nut = false
+		$gun.queue_free()
+		win = false
+
+func ballsack():
+	var nheight = randi_range(1, height)
+	var nwidth = randi_range(0, width)
+	var enemyScene = enemy.instantiate()
+	enemyScene.position = Vector2(nwidth, nheight)
+	add_child(enemyScene)
+	
+
+
+func _on_timer_3_timeout() -> void:
+	ballsack()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8h75"]
+shader = ExtResource("1_378xr")
+shader_parameter/speed = -0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhxeh"]
+bg_color = Color(1, 0.49019608, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7mn"]
+bg_color = Color(0, 0, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_2n65u"]
+resource_name = "Fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b0qsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dk6i0"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psyjh"]
+_data = {
+&"Fade_in": SubResource("Animation_2n65u"),
+&"RESET": SubResource("Animation_b0qsv"),
+&"fade_out": SubResource("Animation_dk6i0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3thk"]
+size = Vector2(19.5, 165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tr8c"]
+size = Vector2(362, 20)
+
+[node name="minigame_uranium_3" type="Node2D" unique_id=436875814]
+script = SubResource("GDScript_y3thk")
+height = -20
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1612831007]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 1, 0.7137255, 1)
+
+[node name="Shader type shi" type="TextureRect" parent="." unique_id=1051436102]
+modulate = Color(0, 0, 0, 0.42352942)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_i8h75")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y3thk")
+stretch_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=958926474]
+visible = false
+z_index = 20
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hhxeh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tl7mn")
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ClockPx" type="Sprite2D" parent="ProgressBar" unique_id=1387948248]
+position = Vector2(-9, 8)
+texture = ExtResource("3_1tr8c")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=831347167]
+z_index = 21
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="SpacebarWithoutarrowkeys" type="Sprite2D" parent="ColorRect2" unique_id=903081095]
+position = Vector2(160, 138)
+texture = ExtResource("4_mngjt")
+
+[node name="Label" type="Label" parent="ColorRect2" unique_id=2055540245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_hukah")
+text = "SHOOT!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1167302046]
+libraries/ = SubResource("AnimationLibrary_psyjh")
+
+[node name="Timer" type="Timer" parent="." unique_id=2052598994]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="." unique_id=877771401]
+one_shot = true
+
+[node name="gun" parent="." unique_id=1141867852 instance=ExtResource("6_y3thk")]
+position = Vector2(29, 130)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1811188119]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2024367837]
+position = Vector2(-10, 92)
+shape = SubResource("RectangleShape2D_y3thk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=968054219]
+position = Vector2(329.5, 101)
+shape = SubResource("RectangleShape2D_y3thk")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1045418436]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=123718279]
+position = Vector2(175, 175)
+shape = SubResource("RectangleShape2D_1tr8c")
+
+[node name="Timer3" type="Timer" parent="." unique_id=1389694397]
+wait_time = 1.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]

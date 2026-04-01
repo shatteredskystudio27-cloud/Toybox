@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://clic1ow5t3vc1"]
+
+[ext_resource type="FontFile" uid="uid://drydrt8iy1kje" path="res://fonts/Minecraft.ttf" id="1_c2nt5"]
+[ext_resource type="Texture2D" uid="uid://bccje8jkiwmxd" path="res://Sprites/UntitledArtwork8.png" id="2_d4spc"]
+[ext_resource type="Texture2D" uid="uid://j2unfihag818" path="res://Sprites/UntitledArtwork9.png" id="3_2xcjm"]
+[ext_resource type="Texture2D" uid="uid://knx2akpb1116" path="res://Sprites/UntitledArtwork7 (1) 3.png" id="4_50e0g"]
+[ext_resource type="Texture2D" uid="uid://danianxrrrkju" path="res://Sprites/UntitledArtwork12 2.png" id="5_8t7ks"]
+[ext_resource type="AudioStream" uid="uid://cd4sxxy3gipnq" path="res://Sounds/Cutscene v5.wav" id="6_c2nt5"]
+
+[sub_resource type="GDScript" id="GDScript_bvfwo"]
+resource_name = "cutscene 3"
+script/source = "extends Control
+
+signal textbox_closed
+
+
+func _ready() -> void:
+	display_text(\"You drag Rubix over to the toybox, he puts up very little struggle\")
+	await self.textbox_closed
+	$AudioStreamPlayer2D.play()
+	display_text(\"Rubix: Its a shame I lost\")
+	await self.textbox_closed
+	display_text(\"Rubix: I wonder if we will ever get out again\")
+	await self.textbox_closed
+	display_text(\"Rubix: Denny believes we will but I'm not so sure\")
+	await self.textbox_closed
+	$\"UntitledArtwork7(1)3\".show()
+	display_text(\"You reach the toybox\")
+	await self.textbox_closed
+	$\"UntitledArtwork7(1)3/UntitledArtwork142\".show()
+	display_text(\"Rubix was thrown in and reunited with denny\")
+	await self.textbox_closed
+	$\"UntitledArtwork7(1)3\".hide()
+	$UntitledArtwork8.show()
+	display_text(\"You go meet with the king again\")
+	await self.textbox_closed
+	$UntitledArtwork8.hide()
+	$UntitledArtwork9.show()
+	display_text(\"Crank: I did it, only one rebel left\")
+	await self.textbox_closed
+	display_text(\"King: ...\")
+	await self.textbox_closed
+	display_text(\"Crank: Captain Uranium...\")
+	await self.textbox_closed
+	display_text(\"Crank: I think my father, Cranker Cognomen Sr. used to work with him...\")
+	await self.textbox_closed
+	display_text(\"Crank: Before Captain Uranium started doing evil\")
+	await self.textbox_closed
+	display_text(\"King: ...\")
+	await self.textbox_closed
+	$UntitledArtwork9.hide()
+	display_text(\"You travel to the window, and Captain Uranium is there, waiting for you\")
+	await self.textbox_closed
+	display_text(\"C. Uranium: I saw that you captured two other rebels...\")
+	await self.textbox_closed
+	display_text(\"C. Uranium: And others like you have caught many more of my allies\")
+	await self.textbox_closed
+	display_text(\"C. Uranium: BUT I\")
+	await self.textbox_closed
+	display_text(\"C. Uranium: I WILL NOT FALTER SO EASILY\")
+	await self.textbox_closed
+	$AnimationPlayer2.play(\"nut\")
+	await $AnimationPlayer2.animation_finished
+	get_tree().change_scene_to_file(\"res://Captain_uranium.tscn\")
+	
+	
+func _input(event):
+	if Input.is_action_just_pressed(\"LMB a.k.a. lick my balls\") and $Label.visible:
+		$Label.hide()
+		emit_signal('textbox_closed')
+
+func display_text(text) -> void:
+	$Label.show()
+	$AnimationPlayer.play(\"text_display\")
+	$Label.text = text
+"
+
+[sub_resource type="Animation" id="Animation_7a8ye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0a7ni"]
+resource_name = "text_display"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y72e6"]
+_data = {
+&"RESET": SubResource("Animation_7a8ye"),
+&"text_display": SubResource("Animation_0a7ni")
+}
+
+[sub_resource type="Animation" id="Animation_7ufi4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.635]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_h0kys"]
+resource_name = "nut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.635, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7odg"]
+_data = {
+&"RESET": SubResource("Animation_7ufi4"),
+&"nut": SubResource("Animation_h0kys")
+}
+
+[node name="Cutscene3" type="Control" unique_id=1931312461]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_bvfwo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1995155261]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[node name="Label" type="Label" parent="." unique_id=2130264401]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 112.0
+offset_right = 272.0
+offset_bottom = 176.0
+theme_override_fonts/font = ExtResource("1_c2nt5")
+text = "This is a place holder cutscene "
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=33430941]
+libraries/ = SubResource("AnimationLibrary_y72e6")
+
+[node name="UntitledArtwork8" type="Sprite2D" parent="." unique_id=1781499324]
+visible = false
+position = Vector2(160, 56)
+texture = ExtResource("2_d4spc")
+
+[node name="UntitledArtwork9" type="Sprite2D" parent="." unique_id=935217636]
+visible = false
+position = Vector2(160, 56)
+texture = ExtResource("3_2xcjm")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1647282329]
+
+[node name="UntitledArtwork7(1)3" type="Sprite2D" parent="." unique_id=1568352646]
+visible = false
+position = Vector2(160, 56)
+texture = ExtResource("4_50e0g")
+
+[node name="UntitledArtwork142" type="Sprite2D" parent="UntitledArtwork7(1)3" unique_id=299513233]
+visible = false
+position = Vector2(24, -8)
+texture = ExtResource("5_8t7ks")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1796231460]
+stream = ExtResource("6_c2nt5")
+volume_db = -0.635
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=809635534]
+libraries/ = SubResource("AnimationLibrary_h7odg")

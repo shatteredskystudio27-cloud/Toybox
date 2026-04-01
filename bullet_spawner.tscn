@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dq76d7pj25vo2"]
+
+[ext_resource type="Script" uid="uid://cburlrk4n5n4d" path="res://bullet_spawner.gd" id="1_rugk2"]
+[ext_resource type="Texture2D" uid="uid://c74o3s3hvj17u" path="res://Sprites/uranium_emiter.png" id="2_rugk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvwyu"]
+size = Vector2(62, 62)
+
+[node name="BulletSpawner" type="Node2D" unique_id=1483999662]
+script = ExtResource("1_rugk2")
+
+[node name="Collectible" type="Sprite2D" parent="." unique_id=1313658920]
+position = Vector2(0, -1)
+texture = ExtResource("2_rugk2")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=199168273]
+wait_time = 0.4
+
+[node name="Rotator" type="Node2D" parent="." unique_id=1762498795]
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=1164339766]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1768350664]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_gvwyu")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
